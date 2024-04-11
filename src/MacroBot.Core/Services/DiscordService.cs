@@ -458,6 +458,10 @@ public class DiscordService : IDiscordService, IHostedService
 				var embedFieldBuilders = new List<EmbedFieldBuilder>();
 				foreach (var field in webhookRequestEmbed.Fields)
 				{
+					if (string.IsNullOrWhiteSpace(field.Name) || string.IsNullOrWhiteSpace(field.Value))
+					{
+						continue;
+					}
 					var embedFieldBuilder = new EmbedFieldBuilder();
 					embedFieldBuilder.WithName(field.Name);
 					embedFieldBuilder.WithValue(field.Value);
